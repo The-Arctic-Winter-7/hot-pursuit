@@ -206,6 +206,9 @@ int main()
     Player player = Player(44, 22, 1.5, PLAYER_SIZE, create_bounding_box(player.sprite, player.size));
     Enemy enemy = Enemy(20, -12, ENEMY_SIZE, create_bounding_box(enemy.sprite, enemy.enemySize), 0.5);
 
+    bn::random rng =  bn::random();
+    rng.update();
+
     while (true)
     {
         player.update();
@@ -217,8 +220,8 @@ int main()
             scoreDisplay.resetScore();
             player.sprite.set_x(44);
             player.sprite.set_y(22);
-            enemy.sprite.set_x(20);
-            enemy.sprite.set_y(-12);
+            enemy.sprite.set_x(rng.get_unbiased_fixed(MIN_X, MAX_X));
+            enemy.sprite.set_y(rng.get_unbiased_fixed(MIN_Y, MAX_Y));
         }
 
         // Update the scores and disaply them
