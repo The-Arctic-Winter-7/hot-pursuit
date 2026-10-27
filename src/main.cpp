@@ -147,17 +147,18 @@ public:
     bn::sprite_ptr sprite;
     bn::size enemySize;
     bn::rect bounding_box;
+    bn::fixed speed;
 
-    Enemy(bn::fixed x_start, bn::fixed y_start, bn::size size, bn::rect enemy_bounding_box) : sprite(bn::sprite_items::square.create_sprite(x_start, y_start)),
+    Enemy(bn::fixed x_start, bn::fixed y_start, bn::size size, bn::rect enemy_bounding_box, bn::fixed speed) : sprite(bn::sprite_items::square.create_sprite(x_start, y_start)),
                                                                                               enemySize(size), bounding_box(enemy_bounding_box)
     {
     }
 
     void update(Player& player) {
-        if (sprite.x() < player.x()) {
+        if (sprite.x() < player.sprite.x()) {
             sprite.set_x(player.sprite.x() - speed);
         }
-        if (sprite.x() > player.x()) {
+        if (sprite.x() > player.sprite.x()) {
             sprite.set_x(player.sprite.x() + speed);
         }
 
@@ -174,7 +175,7 @@ int main()
 
     // Create a player and initialize it
     Player player = Player(44, 22, 1.5, PLAYER_SIZE, create_bounding_box(player.sprite, player.size));
-    Enemy enemy = Enemy(20, -12, ENEMY_SIZE, create_bounding_box(enemy.sprite, enemy.enemySize));
+    Enemy enemy = Enemy(20, -12, ENEMY_SIZE, create_bounding_box(enemy.sprite, enemy.enemySize), 1.2);
 
     while (true)
     {
