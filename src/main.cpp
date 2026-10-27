@@ -166,6 +166,15 @@ public:
             sprite.set_x(sprite.x() - speed);
         }
 
+        if (sprite.y() < player.sprite.y())
+        {
+            sprite.set_y(sprite.y() + speed);
+        }
+        if (sprite.y() > player.sprite.y())
+        {
+            sprite.set_y(sprite.y() - speed);
+        }
+
         bounding_box = create_bounding_box(sprite, enemySize);
     }
 };
@@ -179,7 +188,7 @@ int main()
 
     // Create a player and initialize it
     Player player = Player(44, 22, 1.5, PLAYER_SIZE, create_bounding_box(player.sprite, player.size));
-    Enemy enemy = Enemy(20, -12, ENEMY_SIZE, create_bounding_box(enemy.sprite, enemy.enemySize), 1.2);
+    Enemy enemy = Enemy(20, -12, ENEMY_SIZE, create_bounding_box(enemy.sprite, enemy.enemySize), 0.5);
 
     while (true)
     {
