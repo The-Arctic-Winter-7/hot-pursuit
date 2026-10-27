@@ -145,10 +145,10 @@ class Enemy
 {
 public:
     bn::sprite_ptr sprite;
-    bn::fixed enemySize;
+    bn::size enemySize;
     bn::rect bound_box;
 
-    Enemy(bn::fixed x_start, bn::fixed y_start, bn::fixed size) : sprite(bn::sprite_items::square.create_sprite(x_start, y_start)),
+    Enemy(bn::fixed x_start, bn::fixed y_start, bn::size size) : sprite(bn::sprite_items::square.create_sprite(x_start, y_start)),
                                                                   enemySize(size)
     {
     }
