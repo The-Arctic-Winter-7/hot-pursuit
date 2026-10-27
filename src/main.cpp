@@ -124,18 +124,34 @@ public:
     {
         if (bn::keypad::right_held())
         {
+            if (sprite.x() > MIN_X)
+            {
+                sprite.set_x(MIN_X + 1);
+            }
             sprite.set_x(sprite.x() + speed);
         }
         if (bn::keypad::left_held())
         {
+            if (sprite.x() < MAX_X)
+            {
+                sprite.set_x(MAX_X - 1);
+            }
             sprite.set_x(sprite.x() - speed);
         }
         if (bn::keypad::up_held())
         {
+            if (sprite.y() < MIN_Y)
+            {
+                sprite.set_y(MIN_Y + 1);
+            }
             sprite.set_y(sprite.y() - speed);
         }
         if (bn::keypad::down_held())
         {
+            if (sprite.y() > MAX_Y)
+            {
+                sprite.set_y(MAX_Y - 1);
+            }
             sprite.set_y(sprite.y() + speed);
         }
         bounding_box = create_bounding_box(sprite, size);
