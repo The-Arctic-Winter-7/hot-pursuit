@@ -146,18 +146,10 @@ class Enemy
 public:
     bn::sprite_ptr sprite;
     bn::size enemySize;
-<<<<<<< HEAD
     bn::rect bounding_box;
 
     Enemy(bn::fixed x_start, bn::fixed y_start, bn::size size, bn::rect enemy_bounding_box) : sprite(bn::sprite_items::square.create_sprite(x_start, y_start)),
                                                                                               enemySize(size), bounding_box(enemy_bounding_box)
-=======
-    bn::rect bound_box;
-    bn::fixed speed;
-
-    Enemy(bn::fixed x_start, bn::fixed y_start, bn::size size, bn::fixed speed) : sprite(bn::sprite_items::square.create_sprite(x_start, y_start)),
-                                                                  enemySize(size)
->>>>>>> b172c3fc2677512cf2c6f4d5deac368a71722a4d
     {
     }
 
@@ -174,14 +166,8 @@ int main()
     ScoreDisplay scoreDisplay = ScoreDisplay();
 
     // Create a player and initialize it
-<<<<<<< HEAD
     Player player = Player(44, 22, 1.5, PLAYER_SIZE, create_bounding_box(player.sprite, player.size));
     Enemy enemy = Enemy(20, -12, ENEMY_SIZE, create_bounding_box(enemy.sprite, enemy.enemySize));
-=======
-    // TODO: we will move the initialization logic to a constructor.
-    Player player = Player(44, 22, 1.5, PLAYER_SIZE, create_bounding_box(player.sprite, player.size));
-    Enemy enemy = Enemy(20, -12, ENEMY_SIZE);
->>>>>>> b172c3fc2677512cf2c6f4d5deac368a71722a4d
 
     while (true)
     {
