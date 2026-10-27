@@ -164,6 +164,7 @@ int main()
     // Create a player and initialize it
     // TODO: we will move the initialization logic to a constructor.
     Player player = Player(44, 22, 1.5);
+    Enemy enemy = Enemy(20, -12, 1.5);
     player.size = PLAYER_SIZE;
     player.bounding_box = create_bounding_box(player.sprite, player.size);
 
