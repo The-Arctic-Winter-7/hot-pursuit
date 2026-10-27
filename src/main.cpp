@@ -112,7 +112,8 @@ public:
     bn::size size;         // The width and height of the sprite
     bn::rect bounding_box; // The rectangle around the sprite for checking collision
 
-    Player(bn::fixed x_start, bn::fixed y_start) : sprite(bn::sprite_items::dot.create_sprite(x_start, y_start)), speed
+    Player(bn::fixed x_start, bn::fixed y_start, bn::fixed playerSpeed) : sprite(bn::sprite_items::dot.create_sprite(x_start, y_start)),
+                                                                            speed = playerSpeed
     {
     }
     /**
@@ -145,7 +146,7 @@ int main()
 
     // Create a player and initialize it
     // TODO: we will move the initialization logic to a constructor.
-    Player player = Player();
+    Player player = Player(44, 22);
     player.sprite.set_x(44);
     player.sprite.set_y(22);
     player.speed = 1.5;
