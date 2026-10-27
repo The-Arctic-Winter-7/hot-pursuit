@@ -155,6 +155,7 @@ public:
 
     void update(Player& player) {
         sprite.set_x(player.sprite.x());
+        bounding_box = create_bounding_box(sprite, enemySize);
     }
 };
 
