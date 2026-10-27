@@ -149,8 +149,9 @@ public:
     bn::rect bounding_box;
     bn::fixed speed;
 
-    Enemy(bn::fixed x_start, bn::fixed y_start, bn::size size, bn::rect enemy_bounding_box, bn::fixed speed) : sprite(bn::sprite_items::square.create_sprite(x_start, y_start)),
-                                                                                                               enemySize(size), bounding_box(enemy_bounding_box)
+    Enemy(bn::fixed x_start, bn::fixed y_start, bn::size size, bn::rect enemy_bounding_box, bn::fixed enemy_speed) : sprite(bn::sprite_items::square.create_sprite(x_start, y_start)),
+                                                                                                               enemySize(size), bounding_box(enemy_bounding_box),
+                                                                                                               speed(enemy_speed)
     {
     }
 
@@ -158,11 +159,11 @@ public:
     {
         if (sprite.x() < player.sprite.x())
         {
-            sprite.set_x(player.sprite.x() - speed);
+            sprite.set_x(sprite.x() + speed);
         }
         if (sprite.x() > player.sprite.x())
         {
-            sprite.set_x(player.sprite.x() + speed);
+            sprite.set_x(sprite.x() - speed);
         }
 
         bounding_box = create_bounding_box(sprite, enemySize);
