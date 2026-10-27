@@ -154,7 +154,7 @@ public:
     }
 
     void update(Player& player) {
-        sprite.set_x();
+        sprite.set_x(player.sprite.x());
     }
 };
 
@@ -172,6 +172,7 @@ int main()
     while (true)
     {
         player.update();
+        enemy.update(player);
 
         // Reset the current score and player position if the player collides with enemy
         if (enemy.intersects(player.bounding_box))
