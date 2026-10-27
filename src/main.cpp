@@ -112,8 +112,8 @@ public:
     bn::size size;         // The width and height of the sprite
     bn::rect bounding_box; // The rectangle around the sprite for checking collision
 
-    Player(bn::fixed x_start, bn::fixed y_start, bn::fixed playerSpeed, bn::size playerSize) : sprite(bn::sprite_items::dot.create_sprite(x_start, y_start)),
-                                                                          speed(playerSpeed), size(playerSize)
+    Player(bn::fixed x_start, bn::fixed y_start, bn::fixed playerSpeed, bn::size playerSize, bn::rect playerBoundingBox) : sprite(bn::sprite_items::dot.create_sprite(x_start, y_start)), 
+                                                                          speed(playerSpeed), size(playerSize), bounding_box(playerBoundingBox)
     {
     }
     /**
@@ -163,9 +163,8 @@ int main()
 
     // Create a player and initialize it
     // TODO: we will move the initialization logic to a constructor.
-    Player player = Player(44, 22, 1.5, PLAYER_SIZE);
+    Player player = Player(44, 22, 1.5, PLAYER_SIZE, create_bounding_box(player.sprite, player.size));
     Enemy enemy = Enemy(20, -12, ENEMY_SIZE);
-    player.bounding_box = create_bounding_box(player.sprite, player.size);
 
     bn::sprite_ptr enemy_sprite = bn::sprite_items::square.create_sprite(-30, 22);
     bn::rect enemy_bounding_box = create_bounding_box(enemy_sprite, ENEMY_SIZE);
