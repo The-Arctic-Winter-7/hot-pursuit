@@ -113,7 +113,7 @@ public:
     bn::rect bounding_box; // The rectangle around the sprite for checking collision
 
     Player(bn::fixed x_start, bn::fixed y_start, bn::fixed playerSpeed) : sprite(bn::sprite_items::dot.create_sprite(x_start, y_start)),
-                                                                            speed(playerSpeed)
+                                                                          speed(playerSpeed)
     {
     }
     /**
@@ -129,17 +129,16 @@ public:
         {
             sprite.set_x(sprite.x() - speed);
         }
-        // TODO: Add logic for up and down
-        if (bn::keypad::up_held()) {
+        if (bn::keypad::up_held())
+        {
             sprite.set_y(sprite.y() - speed);
         }
-        if (bn::keypad::down_held()) {
+        if (bn::keypad::down_held())
+        {
             sprite.set_y(sprite.y() + speed);
         }
         bounding_box = create_bounding_box(sprite, size);
     }
-
-    // Create the sprite. This will be moved to a constructor
 };
 
 class Enemy 
