@@ -134,7 +134,6 @@ public:
         bounding_box = create_bounding_box(sprite, size);
     }
 
-    // Create the sprite. This will be moved to a constructor
 };
 
 int main()
