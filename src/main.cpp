@@ -147,10 +147,15 @@ public:
     bn::sprite_ptr sprite;
     bn::size enemySize;
     bn::rect bound_box;
+    bn::fixed speed;
 
-    Enemy(bn::fixed x_start, bn::fixed y_start, bn::size size) : sprite(bn::sprite_items::square.create_sprite(x_start, y_start)),
+    Enemy(bn::fixed x_start, bn::fixed y_start, bn::size size, bn::fixed speed) : sprite(bn::sprite_items::square.create_sprite(x_start, y_start)),
                                                                   enemySize(size)
     {
+    }
+
+    void update(Player& player) {
+        sprite.set_x();
     }
 };
 
@@ -164,7 +169,7 @@ int main()
     // Create a player and initialize it
     // TODO: we will move the initialization logic to a constructor.
     Player player = Player(44, 22, 1.5, PLAYER_SIZE);
-    Enemy enemy = Enemy(20, -12, ENEMY_SIZE);
+    Enemy enemy = Enemy(20, -12, ENEMY_SIZE, 1.4);
     player.bounding_box = create_bounding_box(player.sprite, player.size);
 
     while (true)
@@ -172,12 +177,12 @@ int main()
         player.update();
 
         // Reset the current score and player position if the player collides with enemy
-        // if (enemy_bounding_box.intersects(player.bounding_box))
-        // {
-        //     scoreDisplay.resetScore();
-        //     player.sprite.set_x(44);
-        //     player.sprite.set_y(22);
-        // }
+        if (enemy.intersects(player.bounding_box))
+        {
+            scoreDisplay.resetScore();
+            player.sprite.set_x(44);
+            player.sprite.set_y(22);
+        }
 
         // Update the scores and disaply them
         scoreDisplay.update();
