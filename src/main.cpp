@@ -176,7 +176,7 @@ int main()
         enemy.update(player);
 
         // Reset the current score and player position if the player collides with enemy
-        if (enemy.intersects(player.bounding_box))
+        if (enemy.bounding_box.intersects(player.bounding_box))
         {
             scoreDisplay.resetScore();
             player.sprite.set_x(44);
