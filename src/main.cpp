@@ -142,6 +142,19 @@ public:
     // Create the sprite. This will be moved to a constructor
 };
 
+class Enemy 
+{
+    public:
+        bn::sprite_ptr sprite;
+        bn::fixed size;
+        bn::rect bound_box;
+
+    Enemy(bn::fixed x_start, bn::fixed y_start, bn::fixed size) : sprite(bn::sprite_items::square.create_sprite(x_start, y_start)) {
+        
+    }
+
+};
+
 int main()
 {
     bn::core::init();
