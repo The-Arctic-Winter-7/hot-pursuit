@@ -201,6 +201,8 @@ int main()
             scoreDisplay.resetScore();
             player.sprite.set_x(44);
             player.sprite.set_y(22);
+            enemy.sprite.set_x(20);
+            enemy.sprite.set_y(-12);
         }
 
         // Update the scores and disaply them
