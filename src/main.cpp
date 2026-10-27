@@ -124,17 +124,17 @@ public:
     {
         if (bn::keypad::right_held())
         {
-            if (sprite.x() > MIN_X)
+            if (sprite.x() > MAX_X)
             {
-                sprite.set_x(MIN_X + 1);
+                sprite.set_x(MAX_X - 1);
             }
             sprite.set_x(sprite.x() + speed);
         }
         if (bn::keypad::left_held())
         {
-            if (sprite.x() < MAX_X)
+            if (sprite.x() < MIN_X)
             {
-                sprite.set_x(MAX_X - 1);
+                sprite.set_x(MIN_X + 1);
             }
             sprite.set_x(sprite.x() - speed);
         }
