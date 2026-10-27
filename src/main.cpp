@@ -112,8 +112,8 @@ public:
     bn::size size;         // The width and height of the sprite
     bn::rect bounding_box; // The rectangle around the sprite for checking collision
 
-    Player(bn::fixed x_start, bn::fixed y_start, bn::fixed playerSpeed, bn::size playerSize, bn::rect playerBoundingBox) : sprite(bn::sprite_items::dot.create_sprite(x_start, y_start)), 
-                                                                          speed(playerSpeed), size(playerSize), bounding_box(playerBoundingBox)
+    Player(bn::fixed x_start, bn::fixed y_start, bn::fixed playerSpeed, bn::size playerSize, bn::rect playerBoundingBox) : sprite(bn::sprite_items::dot.create_sprite(x_start, y_start)),
+                                                                                                                           speed(playerSpeed), size(playerSize), bounding_box(playerBoundingBox)
     {
     }
     /**
@@ -146,10 +146,10 @@ class Enemy
 public:
     bn::sprite_ptr sprite;
     bn::size enemySize;
-    bn::rect bound_box;
+    bn::rect bounding_box;
 
-    Enemy(bn::fixed x_start, bn::fixed y_start, bn::size size) : sprite(bn::sprite_items::square.create_sprite(x_start, y_start)),
-                                                                  enemySize(size)
+    Enemy(bn::fixed x_start, bn::fixed y_start, bn::size size, bn::rect enemy_bounding_box) : sprite(bn::sprite_items::square.create_sprite(x_start, y_start)),
+                                                                                              enemySize(size), bounding_box(enemy_bounding_box)
     {
     }
 };
@@ -162,9 +162,8 @@ int main()
     ScoreDisplay scoreDisplay = ScoreDisplay();
 
     // Create a player and initialize it
-    // TODO: we will move the initialization logic to a constructor.
     Player player = Player(44, 22, 1.5, PLAYER_SIZE, create_bounding_box(player.sprite, player.size));
-    Enemy enemy = Enemy(20, -12, ENEMY_SIZE);
+    Enemy enemy = Enemy(20, -12, ENEMY_SIZE, create_bounding_box(enemy.sprite, enemy.enemySize));
 
     while (true)
     {
