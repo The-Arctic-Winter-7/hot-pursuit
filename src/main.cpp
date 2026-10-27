@@ -154,7 +154,13 @@ public:
     }
 
     void update(Player& player) {
-        sprite.set_x(player.sprite.x());
+        if (sprite.x() < player.x()) {
+            sprite.set_x(player.sprite.x() - speed);
+        }
+        if (sprite.x() > player.x()) {
+            sprite.set_x(player.sprite.x() + speed);
+        }
+
         bounding_box = create_bounding_box(sprite, enemySize);
     }
 };
