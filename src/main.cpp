@@ -150,15 +150,18 @@ public:
     bn::fixed speed;
 
     Enemy(bn::fixed x_start, bn::fixed y_start, bn::size size, bn::rect enemy_bounding_box, bn::fixed speed) : sprite(bn::sprite_items::square.create_sprite(x_start, y_start)),
-                                                                                              enemySize(size), bounding_box(enemy_bounding_box)
+                                                                                                               enemySize(size), bounding_box(enemy_bounding_box)
     {
     }
 
-    void update(Player& player) {
-        if (sprite.x() < player.sprite.x()) {
+    void update(Player &player)
+    {
+        if (sprite.x() < player.sprite.x())
+        {
             sprite.set_x(player.sprite.x() - speed);
         }
-        if (sprite.x() > player.sprite.x()) {
+        if (sprite.x() > player.sprite.x())
+        {
             sprite.set_x(player.sprite.x() + speed);
         }
 
