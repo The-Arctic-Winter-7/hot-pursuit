@@ -21,6 +21,8 @@ static constexpr int MAX_Y = bn::display::height() / 2;
 static constexpr int MIN_X = -bn::display::width() / 2;
 static constexpr int MAX_X = bn::display::width() / 2;
 
+static constexpr int MAX_ENEMIES = 3;
+
 // Number of characters required to show two of the longest numer possible in an int (-2147483647)
 static constexpr int MAX_SCORE_CHARS = 22;
 
@@ -167,8 +169,8 @@ public:
     bn::fixed speed;
 
     Enemy(bn::fixed x_start, bn::fixed y_start, bn::size size, bn::rect enemy_bounding_box, bn::fixed enemy_speed) : sprite(bn::sprite_items::square.create_sprite(x_start, y_start)),
-                                                                                                               enemySize(size), bounding_box(enemy_bounding_box),
-                                                                                                               speed(enemy_speed)
+                                                                                                                     enemySize(size), bounding_box(enemy_bounding_box),
+                                                                                                                     speed(enemy_speed)
     {
     }
 
@@ -196,6 +198,12 @@ public:
     }
 };
 
+void spawn_enemy(bn::vector<Enemy, MAX_ENEMIES> &enemy, bn::fixed x_start, bn::fixed y_start, bn::size size, bn::fixed speed)
+{
+    Enemy enemy_instance = Enemy(x_start, y_start, ENEMY_SIZE, create_bounding_box(enemy_instance.sprite, enemy_instance.enemySize), speed);
+    enemy.push_back(enemy_instance);
+}
+
 int main()
 {
     bn::core::init();
@@ -204,24 +212,26 @@ int main()
 
     // Create a player and initialize it
     Player player = Player(44, 22, 1.5, PLAYER_SIZE, create_bounding_box(player.sprite, player.size));
-    Enemy enemy = Enemy(20, -12, ENEMY_SIZE, create_bounding_box(enemy.sprite, enemy.enemySize), 0.5);
+    // Enemy enemy = Enemy(20, -12, ENEMY_SIZE, create_bounding_box(enemy.sprite, enemy.enemySize), 0.5);
+    bn::vector<Enemy, MAX_ENEMIES> enemy = {};
+    spawn_enemy(enemy, 20, -12, ENEMY_SIZE, 0.5);
 
-    bn::random rng =  bn::random();
+    bn::random rng = bn::random();
     rng.update();
 
     while (true)
     {
         player.update();
-        enemy.update(player);
+        enemy[0].update(player);
 
         // Reset the current score and player position if the player collides with enemy
-        if (enemy.bounding_box.intersects(player.bounding_box))
+        if (enemy[0].bounding_box.intersects(player.bounding_box))
         {
             scoreDisplay.resetScore();
             player.sprite.set_x(44);
             player.sprite.set_y(22);
-            enemy.sprite.set_x(rng.get_unbiased_fixed(MIN_X, MAX_X));
-            enemy.sprite.set_y(rng.get_unbiased_fixed(MIN_Y, MAX_Y));
+            enemy[0].sprite.set_x(rng.get_unbiased_fixed(MIN_X, MAX_X));
+            enemy[0].sprite.set_y(rng.get_unbiased_fixed(MIN_Y, MAX_Y));
         }
 
         // Update the scores and disaply them
