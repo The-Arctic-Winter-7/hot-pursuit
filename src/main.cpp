@@ -1,14 +1,8 @@
 #include <bn_core.h>
 #include <bn_display.h>
-#include <bn_keypad.h>
-#include <bn_rect.h>
 #include <bn_size.h>
-#include <bn_string.h>
-#include <bn_sprite_ptr.h>
-#include <bn_sprite_text_generator.h>
 #include <bn_random.h>
-
-#include "common_fixed_8x16_font.h"
+#include <bn_timers.h>
 
 #include "create_bounding_box.h"
 
@@ -36,20 +30,27 @@ void spawn_enemy(bn::vector<Enemy, MAX_ENEMIES> &enemy, bn::fixed x_start, bn::f
 int main()
 {
     bn::core::init();
+
     // Create a new score display
     ScoreDisplay scoreDisplay = ScoreDisplay();
 
     // Create a player and initialize it
     Player player = Player(44, 22, 1.5, PLAYER_SIZE, create_bounding_box(player.sprite, player.size));
+
     // Enemy enemy = Enemy(20, -12, ENEMY_SIZE, create_bounding_box(enemy.sprite, enemy.enemySize), 0.5);
     bn::vector<Enemy, MAX_ENEMIES> enemy = {};
     spawn_enemy(enemy, 20, -12, ENEMY_SIZE, 0.5);
 
     bn::random rng = bn::random();
-    rng.update();
+    rng.update(); // Forces a new seed every time the game is ran
 
     while (true)
     {
+        if (scoreDisplay.score / 60 >= 5)
+        {
+            
+        }
+
         player.update();
         enemy[0].update(player);
 
