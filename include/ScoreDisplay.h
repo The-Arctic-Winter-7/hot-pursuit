@@ -1,5 +1,9 @@
 #pragma once
 
+#include <bn_sprite_text_generator.h>
+#include <bn_string.h>
+
+#include "common_fixed_8x16_font.h"
 
 /**
  * Displays a score and high score.
@@ -20,20 +24,23 @@ public:
     /**
      * Displays a number at the given position
      */
-    void show_number(int x, int y, int number)
-    {
-        // Convert number to a string and then display it
-        bn::string<MAX_SCORE_CHARS> number_string = bn::to_string<MAX_SCORE_CHARS>(number);
-        text_generator.generate(x, y, number_string, score_sprites);
-    }
+    void show_number(int x, int y, int number);
 
     /**
      * Sets score back to 0. Does NOT reset high score.
      */
-    void resetScore()
-    {
-        score = 0;
-    }
+    void resetScore();
+
+    // Number of characters required to show two of the longest numer possible in an int (-2147483647)
+    static constexpr int MAX_SCORE_CHARS = 22;
+
+    // Score location
+    static constexpr int SCORE_X = 70;
+    static constexpr int SCORE_Y = -70;
+
+    // High score location
+    static constexpr int HIGH_SCORE_X = -70;
+    static constexpr int HIGH_SCORE_Y = -70;
 
     int score;                                                 // current score
     int high_score;                                            // best core
