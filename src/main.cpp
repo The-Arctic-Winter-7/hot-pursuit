@@ -7,6 +7,7 @@
 
 #include "create_bounding_box.h"
 #include "spawn_enemy.h"
+#include "check_enemy_collision.h"
 
 #include "ScoreDisplay.h"
 #include "Enemy.h"
@@ -35,7 +36,7 @@ int main()
     Player player = Player(44, 22, PLAYER_SPEED, PLAYER_SIZE, create_bounding_box(player.sprite, player.size));
 
     // Enemy enemy = Enemy(20, -12, ENEMY_SIZE, create_bounding_box(enemy.sprite, enemy.enemySize), 0.5);
-    bn::vector<Enemy, MAX_ENEMIES> enemy = {};
+    bn::vector<Enemy, Enemy::MAX_ENEMIES> enemy = {};
     spawn_enemy(enemy, 20, -12, ENEMY_SIZE, ENEMY_SPEED);
 
     bn::random rng = bn::random();
@@ -55,9 +56,9 @@ int main()
 
         player.update();
         for (Enemy &enemies : enemy)
-        {
             enemies.update(player);
-        }
+
+        
 
         // Reset the current score and player position if the player collides with enemy
         for (Enemy &enemies : enemy)
