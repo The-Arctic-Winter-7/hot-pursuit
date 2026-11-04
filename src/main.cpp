@@ -1,14 +1,10 @@
 #include <bn_core.h>
 #include <bn_display.h>
-#include <bn_keypad.h>
 #include <bn_rect.h>
 #include <bn_size.h>
-#include <bn_string.h>
 #include <bn_sprite_ptr.h>
 #include <bn_sprite_text_generator.h>
 #include <bn_random.h>
-
-#include "common_fixed_8x16_font.h"
 
 #include "create_bounding_box.h"
 #include "spawn_enemy.h"
