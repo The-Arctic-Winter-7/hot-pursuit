@@ -55,10 +55,9 @@ int main()
         }
 
         player.update();
+        check_enemy_collision(enemy);
         for (Enemy &enemies : enemy)
             enemies.update(player);
-
-        check_enemy_collision(enemy);
 
         // Reset the current score and player position if the player collides with enemy
         for (Enemy &enemies : enemy)

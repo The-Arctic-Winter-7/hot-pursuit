@@ -2,6 +2,13 @@
 
 void check_enemy_collision(bn::vector<Enemy, Enemy::MAX_ENEMIES> &enemies)
 {
+    for (Enemy enemy : enemies)
+    {
+        enemy.has_collided_bottom = false;
+        enemy.has_collided_top = false;
+        enemy.has_collided_left = false;
+        enemy.has_collided_right = false;
+    }
     if (enemies.size() >= 2)
     {
         for (int i = 0; i < enemies.size(); i++)
@@ -10,38 +17,26 @@ void check_enemy_collision(bn::vector<Enemy, Enemy::MAX_ENEMIES> &enemies)
             {
                 if (enemies[i].bounding_box.intersects(enemies[j].bounding_box))
                 {
-                    if (enemies[i].sprite.x() < enemies[j].sprite.x())
+                    if (enemies[i].bounding_box.right() >= enemies[j].bounding_box.left())
                     {
-                        enemies[i].has_collided_right = true;
-                        enemies[j].has_collided_left = true;
+                        enemies[i].sprite.set_x(enemies[i].sprite.x() - 1);
+                        enemies[j].sprite.set_x(enemies[j].sprite.x() + 1);
                     }
-                    if (enemies[i].sprite.x() > enemies[j].sprite.x())
+                    if (enemies[i].bounding_box.left() <= enemies[j].bounding_box.right())
                     {
-                        enemies[i].has_collided_left = true;
-                        enemies[j].has_collided_right = true;
+                        enemies[i].sprite.set_x(enemies[i].sprite.x() + 1);
+                        enemies[j].sprite.set_x(enemies[j].sprite.x() - 1);
                     }
-                    if (enemies[i].sprite.y() < enemies[j].sprite.y())
+                    if (enemies[i].bounding_box.bottom() <= enemies[j].bounding_box.top())
                     {
-                        enemies[i].has_collided_bottom = true;
-                        enemies[j].has_collided_top = true;
+                        enemies[i].sprite.set_y(enemies[i].sprite.y() - 1);
+                        enemies[j].sprite.set_y(enemies[j].sprite.y() + 1);
                     }
-                    if (enemies[i].sprite.y() > enemies[j].sprite.y())
+                    if (enemies[i].bounding_box.top() >= enemies[j].bounding_box.bottom())
                     {
-                        enemies[i].has_collided_top = true;
-                        enemies[j].has_collided_bottom = true;
+                        enemies[i].sprite.set_y(enemies[i].sprite.y() + 1);
+                        enemies[j].sprite.set_y(enemies[j].sprite.y() - 1);
                     }
-                }
-                else
-                {
-                    enemies[i].has_collided_right = false;
-                    enemies[i].has_collided_left = false;
-                    enemies[i].has_collided_bottom = false;
-                    enemies[i].has_collided_top = false;
-
-                    enemies[j].has_collided_right = false;
-                    enemies[j].has_collided_left = false;
-                    enemies[j].has_collided_bottom = false;
-                    enemies[j].has_collided_top = false;
                 }
             }
         }
