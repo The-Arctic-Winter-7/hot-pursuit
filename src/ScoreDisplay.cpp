@@ -1,4 +1,4 @@
-#include "ScoreDisplay.h";
+#include "ScoreDisplay.h"
 
 ScoreDisplay::ScoreDisplay() : score(0),
                                high_score(0),
