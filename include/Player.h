@@ -16,11 +16,15 @@
 class Player
 {
 public:
+    static constexpr int MIN_Y = -bn::display::height() / 2;
+    static constexpr int MAX_Y = bn::display::height() / 2;
+    static constexpr int MIN_X = -bn::display::width() / 2;
+    static constexpr int MAX_X = bn::display::width() / 2;
+
     bn::sprite_ptr sprite;
+    bn::fixed base_speed;
     bn::size size;         // The width and height of the sprite
     bn::rect bounding_box; // The rectangle around the sprite for checking collision
-    bn::fixed base_speed;
-    bn::vector<bn::fixed, 2> speed;
 
     Player(bn::fixed x_start, bn::fixed y_start, bn::fixed playerSpeed, bn::size playerSize, bn::rect playerBoundingBox);
     /**
