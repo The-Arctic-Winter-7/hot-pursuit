@@ -1,16 +1,8 @@
 #include <bn_core.h>
 #include <bn_display.h>
-<<<<<<< HEAD
 #include <bn_size.h>
 #include <bn_random.h>
 #include <bn_timers.h>
-=======
-#include <bn_rect.h>
-#include <bn_size.h>
-#include <bn_sprite_ptr.h>
-#include <bn_sprite_text_generator.h>
-#include <bn_random.h>
->>>>>>> 2b9d9416ba867c0e8d1e83d1b3825d79620c8097
 
 #include "create_bounding_box.h"
 #include "spawn_enemy.h"
@@ -50,7 +42,7 @@ int main()
     {
         if (scoreDisplay.score / 60 >= 5)
         {
-            
+
         }
 
         player.update();
