@@ -1,6 +1,7 @@
 #pragma once
 
 #include <bn_sprite_ptr.h>
+#include <bn_log.h>
 
 #include "Player.h"
 #include "create_bounding_box.h"

@@ -3,6 +3,7 @@
 #include <bn_size.h>
 #include <bn_random.h>
 #include <bn_timers.h>
+#include <bn_log.h>
 
 #include "create_bounding_box.h"
 #include "spawn_enemy.h"
@@ -15,8 +16,8 @@
 static constexpr bn::size PLAYER_SIZE = {8, 8};
 static constexpr bn::size ENEMY_SIZE = {8, 8};
 
-static constexpr int PLAYER_SPEED = 1.5;
-static constexpr int ENEMY_SPEED = 0.5;
+static constexpr bn::fixed PLAYER_SPEED = 1.5;
+static constexpr bn::fixed ENEMY_SPEED = 0.5;
 
 static constexpr int MIN_Y = -bn::display::height() / 2;
 static constexpr int MAX_Y = bn::display::height() / 2;
@@ -53,11 +54,15 @@ int main()
         }
 
         player.update();
-        for(Enemy &enemies : enemy) enemies.update(player);
+        for (Enemy &enemies : enemy)
+        {
+            enemies.update(player);
+        }
 
         // Reset the current score and player position if the player collides with enemy
-        for (Enemy &enemies : enemy) if (enemies.bounding_box.intersects(player.bounding_box)) has_collided = true;
-        
+        for (Enemy &enemies : enemy)
+            if (enemies.bounding_box.intersects(player.bounding_box))
+                has_collided = true;
 
         if (has_collided)
         {
