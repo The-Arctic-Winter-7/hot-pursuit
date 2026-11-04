@@ -11,6 +11,7 @@
 #include "common_fixed_8x16_font.h"
 
 #include "create_bounding_box.h"
+#include "spawn_enemy.h"
 
 #include "ScoreDisplay.h"
 #include "Enemy.h"
@@ -25,13 +26,6 @@ static constexpr int MAX_Y = bn::display::height() / 2;
 static constexpr int MIN_X = -bn::display::width() / 2;
 static constexpr int MAX_X = bn::display::width() / 2;
 
-static constexpr int MAX_ENEMIES = 3;
-
-void spawn_enemy(bn::vector<Enemy, MAX_ENEMIES> &enemy, bn::fixed x_start, bn::fixed y_start, bn::size size, bn::fixed speed)
-{
-    Enemy enemy_instance = Enemy(x_start, y_start, size, speed);
-    enemy.push_back(enemy_instance);
-}
 
 int main()
 {
