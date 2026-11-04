@@ -31,7 +31,7 @@ static constexpr int MAX_ENEMIES = 3;
 
 void spawn_enemy(bn::vector<Enemy, MAX_ENEMIES> &enemy, bn::fixed x_start, bn::fixed y_start, bn::size size, bn::fixed speed)
 {
-    Enemy enemy_instance = Enemy(x_start, y_start, ENEMY_SIZE, create_bounding_box(enemy_instance.sprite, enemy_instance.enemySize), speed);
+    Enemy enemy_instance = Enemy(x_start, y_start, size, create_bounding_box(enemy_instance.sprite, enemy_instance.enemySize), speed);
     enemy.push_back(enemy_instance);
 }
 

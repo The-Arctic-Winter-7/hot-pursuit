@@ -14,7 +14,7 @@
 class ScoreDisplay
 {
 public:
-    ScoreDisplay::ScoreDisplay();
+    ScoreDisplay();
 
     /**
      * Increases score by 1 and updates high score if needed. Displays score and high score.
