@@ -1,10 +1,9 @@
 #include "Enemy.h"
-#include "create_bounding_box.h"
-#include "bn_sprite_items_velociraptor.h"
 
-Enemy::Enemy(bn::fixed x_start, bn::fixed y_start, bn::size size, bn::rect enemy_bounding_box, bn::fixed enemy_speed) : sprite(bn::sprite_items::velociraptor.create_sprite(x_start, y_start)),
-                                                                                                                     enemySize(size), bounding_box(enemy_bounding_box),
-                                                                                                                     speed(enemy_speed)
+Enemy::Enemy(bn::fixed x_start, bn::fixed y_start, bn::size size, bn::fixed enemy_speed) : 
+            sprite(bn::sprite_items::velociraptor.create_sprite(x_start, y_start)),
+            enemySize(size), bounding_box(create_bounding_box(sprite, size)),
+            speed(enemy_speed)
 {
 }
 
