@@ -1,6 +1,7 @@
 #pragma once
 
 #include <bn_vector.h>
+#include <bn_log.h>
 
 #include "Enemy.h"
 

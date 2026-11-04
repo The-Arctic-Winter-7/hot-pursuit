@@ -8,8 +8,8 @@ Player::Player(bn::fixed x_start, bn::fixed y_start, bn::fixed playerSpeed, bn::
 
 void Player::update()
 {
-    bn::fixed x_component = 0;
-    bn::fixed y_component = 0;
+    bn::fixed x_component = 0; // x component of movement vector
+    bn::fixed y_component = 0; // y component of movement vector
 
     if (bn::keypad::right_held() && sprite.x() <= MAX_X)
         x_component = base_speed;
@@ -23,10 +23,13 @@ void Player::update()
     if (bn::keypad::down_held() && sprite.y() <= MAX_Y)
         y_component = base_speed;
 
+    // Magnitude of movement vector
     bn::fixed magnitude = bn::sqrt((x_component * x_component) + (y_component * y_component));
 
     if (magnitude > 0)
     {
+        // As long as the magnitude is not zero, uses vector math to normalize speed
+        // in all directions using unit vectors
         sprite.set_x(sprite.x() + ((x_component / magnitude) * base_speed));
         sprite.set_y(sprite.y() + ((y_component / magnitude) * base_speed));
     }

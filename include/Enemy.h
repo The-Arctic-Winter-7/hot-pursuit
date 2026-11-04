@@ -11,10 +11,12 @@ class Enemy
 {
 public:
     static constexpr int MAX_ENEMIES = 3;
+    
     bn::sprite_ptr sprite;
     bn::size enemySize;
     bn::rect bounding_box;
-    bn::fixed speed;
+    bn::fixed base_speed;
+
     bool has_collided_top;
     bool has_collided_bottom;
     bool has_collided_left;
