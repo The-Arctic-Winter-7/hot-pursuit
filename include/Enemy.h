@@ -1,6 +1,7 @@
 #pragma once
 
 #include <bn_sprite_ptr.h>
+#include <bn_sprites_actions.h>
 #include <bn_log.h>
 
 #include "Player.h"

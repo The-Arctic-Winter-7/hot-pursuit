@@ -13,18 +13,26 @@ void Enemy::update(Player &player)
     bn::fixed x_component = 0; // x component of movement vector
     bn::fixed y_component = 0; // y component of movement vector
 
-    if (sprite.x() < player.sprite.x() && !has_collided_right)
+    if (sprite.x() < player.sprite.x() && !has_collided_right) {
         x_component = base_speed;
+        sprite.set_horizontal_flip(true);
+    }
 
-    if (sprite.x() > player.sprite.x() && !has_collided_left)
+    if (sprite.x() > player.sprite.x() && !has_collided_left) {
         x_component = -base_speed;
+        sprite.set_horizontal_flip(false);
+    }
 
-    if (sprite.y() < player.sprite.y() && !has_collided_bottom)
+    if (sprite.y() < player.sprite.y() && !has_collided_bottom) {
         y_component = base_speed;
 
-    if (sprite.y() > player.sprite.y() && !has_collided_top)
+    }
+
+    if (sprite.y() > player.sprite.y() && !has_collided_top) {
         y_component = -base_speed;
 
+    }
+    
     // Magnitude of movement vector
     bn::fixed magnitude = bn::sqrt((x_component * x_component) + (y_component * y_component));
 
