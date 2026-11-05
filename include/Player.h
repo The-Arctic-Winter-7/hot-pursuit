@@ -10,7 +10,7 @@
 #include <bn_math.h>
 
 #include "bn_sprites.h"
-#include "bn_sprite_items_dot.h"
+#include "bn_sprite_items_thing.h"
 #include "create_bounding_box.h"
 
 class Player
